@@ -6,7 +6,7 @@ To monitor and control processes (in factories), there are many solutions availa
 Wouldn’t it be nice if you could build something yourself, combining the output of the devices and see this output and control the devices from one dashboard? And how about an easy-to-use platform to help you monitor the processes?
 This blog and the tutorial on Github describe how to do that, using Cumulocity and open-source technologies and using relatively inexpensive devices and sensors.
 
-When you have completed this code pattern, you will understand how to:
+When you have completed this tutorial, you will understand how to:
 
 * Connect devices to Cumulocity
 * Connect sensors and actuators to an Arduino and read their values.
