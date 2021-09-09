@@ -76,10 +76,12 @@ Follow these steps to set up and run this tutorial. The steps are described in d
 
 I used for this tutorial the following components:
 
-* [*Keyestudio smart home set:*](https://www.keyestudio.com/products/keyestudio-smart-home-kit-withlus-board-for-arduino-diy-stem) this set includes a laser-cut wooden house, with an Arduino clone with a sensor shield, Bluetooth board, sensors and actuators. This is available on Amazon but also at Ali-express etc. It is really good quality, with excellent instructions to build the house and to connect everything. The needed code is available online. For every sensor/actuator is code available, and of course also for the complete set-up. This set is sold via different vendors, so look for the best price for you.
-* Raspberry PI 1: This house is connected to a gateway, I used a Raspberry Pi 4 for that, but this can also be a Raspberry Pi 3. This Raspberry acts as a gateway between the devices and the MQTT server. This gateway is also connected to the cloud or local machine. OPTIONAL: you can also host the gateway on another device, like your local machine.
-* Raspberry Pi 2: This Raspberry Pi acts as an MQTT Broker. I use a Raspberry Pi 3 for that with a Sense HAT board. A Sense Hat is an additional board on top of a Raspberry Pi. It consists of a LED matrix and a joystick. This Sensehat is optional, I use it for displaying traffic going through the MQTT server on the LED Matrix. OPTIONAL: Instead of setting up an MQTT Broker yourself, you can also use a public broker for this or run a broker on another device.
-NodeMCU: there are different devices based on ESP8266, It is open source and relatively cheap and easy to work with. I am using a LoLin board, which has WIFI on board, I have connected a sensor to it to control my 'smart garden'.
+* [*Keyestudio :*](https://www.keyestudio.com/) this set includes an Arduino clone with a sensor shield, Bluetooth board, sensors and actuators. This is available on Amazon but also at Ali-express etc. It is really good quality, with excellent instructions to connect everything. 
+* Raspberry PI 1: This device is connected to a gateway, I used a Raspberry Pi 4 for this, but this can also be a Raspberry Pi 3. This Raspberry acts as a gateway between the Cumulocity and the devices. This gateway is also connected to the local machine. OPTIONAL: you can also host the gateway on another device, like your local machine.
+* Raspberry Pi 2: This Raspberry Pi acts as an MQTT server. I use a Raspberry Pi 3 for that with a Sense HAT board. A Sense Hat is an additional board on top of a Raspberry Pi. It consists of a LED matrix. This Sensehat is optional, I use it for displaying traffic going through the MQTT server on the LED Matrix. OPTIONAL: Instead of setting up an MQTT Broker yourself, you can also use a public broker for this or run a broker on another device.
+NodeMCU: there are different devices based on ESP8266, It is open source and relatively cheap and easy to work with. I am using a LoLin board, which has WIFI on board, I have connected a sensor to it to monitor air humidity.
+* sensors: gas sensor, 2 humidity sensors and light sensor.
+* Actuators: Fan and relay
 
 For this tutorial, I used different pieces of hardware. To use all the possibilities I am going to mention in this tutorial, I advise you to have all parts available. You can also build the functionalities in this tutorial with only having an Arduino with one sensor. All the parts running on the 2 Raspberry Pi's can also run on your laptop.
 
@@ -100,9 +102,11 @@ $ cd xxxxxx
 ```
 Note: For Raspberry Pi users, details on accessing the command line can be found in the remote access documentation if not connecting with a screen and keyboard.
 
-## Step 3 Build your smart home and set up application
+## Step 4 Set up Cumulocity
 
-[Here](https://wiki.keyestudio.com/KS0085_Keyestudio_Smart_Home_Kit_for_Arduino) you can find all instructions and [here](https://fs.keyestudio.com/KS0085) is the sample code to build the smart home. This tutorial and sample code are provided by Keyestudio.
+## Step 4 Build your process monitoring system set up application
+
+[Here](https://wiki.keyestudio.com/) you can find all instructions and [here](https://fs.keyestudio.com/KS0085) is the sample code to build the application on client 1. This tutorial and sample code are provided by Keyestudio.
 
 You first get an introduction to all the parts of the complete set. Then you start with downloading the Arduino software, needed to program the microcontroller. The instructions are based on Windows, but instructions for Apple are similar.
 
@@ -111,10 +115,10 @@ Then to check if you can connect with the Arduino, you use an example sketch to 
 After doing this, you are good to go!
 The tutorial then continues with a description of all the components and some sample code to test. There is also a good explanation of every piece of code available.
 
-The last step before assembling the wooden house and the components is to connect your IOS or Android device to the Bluetooth Module.
-You have to download an app, with this app you can control and start/stop some of the components. Later on in this tutorial, you will build an alternative for this.
+The last step is to connect your IOS or Android device to the Bluetooth Module.
+You have to download an app, with this app you can control and start/stop some of the components. 
 
-If the house is assembled, you need to connect all the wires from the components to the expansion board, in the tutorial you will see a table to connect the components to the right ports.
+you need to connect all the wires from the components to the expansion board, in the tutorial you will see a table to connect the components to the right ports.
 
 When this is done, it is time to upload the code to control all the components, which is available in the last step of the tutorial.
 
@@ -123,7 +127,7 @@ When the sketch is uploaded, you can test all the different components one by on
 
 ## Step 3a Change code to view data on dashboard 
 
-To start and stop the different sensors, different letters (a-r) are being used. Later on, when building the dashboard we are going to uses these letters as well to control the smart home from the dashboard.
+To start and stop the different sensors, different letters (a-r) are being used. Later on, when building the dashboard we are going to uses these letters as well to control the process from the dashboard.
 
 On the dashboard I use the data coming from the following sensors:
 * gas sensor.
@@ -152,7 +156,7 @@ Node-RED is a programming tool for wiring together hardware devices, APIs and on
 
 It is a browser-based editor to connect all kinds of nodes together with wires. Every node has its own functionality. you get a lot of standard nodes, but it is also possible to install extra nodes needed for your application. All the nodes together in your working area are called a flow and can be deployed to its runtime in a single click.
 
-I am using Node-RED on different devices to collect the data from the smart home and garden to show it on the dashboard. Therefore I installed Node-RED on both Raspberry Pi's and on my local machine. If you are using an earlier version of Raspian (Rasberry Pi operating system) Node-RED might be installed already. I will now explain what you need to do before you can start with importing or building the flows in the next steps.
+I am using Node-RED on different devices to collect the data from the process to show it on the dashboard. Therefore I installed Node-RED on both Raspberry Pi's and on my local machine. If you are using an earlier version of Raspian (Rasberry Pi operating system) Node-RED might be installed already. I will now explain what you need to do before you can start with importing or building the flows in the next steps.
 
 In short, you need to do the following steps for both the Raspberry Pi and local machine:
 1. Install Node.js and nvm.
@@ -294,7 +298,7 @@ The flow can be found [here](/flows/MQTT_flow)
 
 In this step, you will create a simple flow. This flow is needed to send and receive data (via MQTT) from the connected devices to a dashboard, which runs locally or in the cloud. All the sensor data comes in via the MQTT-nodes or via the serial port. 
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
-There is also a connection with Slack. If movement is detected at the front of the home a message is being sent to Slack and a picture is being made with the camera and send to the dashboard.
+There is also a connection with Slack. 
 
 ![Gateway Flow](images/SH_Gateway_Flow.png)
 
@@ -306,7 +310,7 @@ The flow can be found [here](/flows/Gateway_flow)
 
 ## Step 7 Build a Dashboard
 
-This dashboard receives data from the connected devices, especially from some sensors. You can also start these sensors and take images to see what is going on around the house.
+This dashboard receives data from the connected devices, especially from some sensors. 
 
 ![Dashboard](images/SH_Dashboard.png)
 
@@ -324,7 +328,7 @@ The flow can be found [here](/flows/Local_flow)
 ## Step 8 Set-up  Node-MCU and moisture sensor.
 
 
-I added an extra device to monitor the garden. I used a NodeMCU device for that. I used a different device for 2 reasons: it is a relatively cheap device and to show how easy it is to connect different devices. This device is based on ESP8266 which is commonly used in cases like this.
+I added an extra device to monitor the air humidity as well. I used a NodeMCU device for that. I used a different device for 2 reasons: it is a relatively cheap device and to show how easy it is to connect different devices. This device is based on ESP8266 which is commonly used in cases like this.
 
 This device its data from the soil moisture sensor via MQTT to the gateway to display it on the dashboard. This data will be displayed on the dashboard as well To upload and compile the code, I use the Arduino IDE.
 
