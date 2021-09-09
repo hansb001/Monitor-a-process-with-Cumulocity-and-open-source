@@ -34,6 +34,7 @@ All warnings and alarms are also being sent to Slack via a webhook, to inform pe
 
 ## Included Components
 
+* [Cumulocity](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/), Cumulocity IoT was built from the ground up to be open, rapid to deploy and distributed.
 * [Node-RED](https://nodered.org), open-source programming tool, where you easily can combine hardware devices, API's etc. to build applications.
 * [MQTT](https://mqtt.org), open-source protocol for sending messages.
 * Bluetooth.
@@ -43,7 +44,6 @@ All warnings and alarms are also being sent to Slack via a webhook, to inform pe
 * Actuators: fan, relay, 
 * Node-MCU, microprocessor.
 * [Slack](http://Slack.com).
-* 
 
 ## Featured technologies
 
@@ -64,26 +64,24 @@ Follow these steps to set up and run this tutorial. The steps are described in d
 
 1. Do some shopping (optional)
 2. Clone the repo
-3. Build your smart home and set up application 3a. Change code to view data on the dashboard
-4. Set-up Node-MCU
-5. Setup Node-RED on both Raspberry Pi's and local machine
-6. Set up MQTT Broker
-7. Set up Gateway
-8. Build a dashboard
+3. Set-up Cumulocity
+4. Build your process monitoring system and set up application
+5. Set-up Node-MCU
+6. Setup Node-RED on both Raspberry Pi's and local machine
+7. Set up MQTT Broker
+8. Set up Gateway
+9. Build a dashboard
 
 ## Step 1 Do some shopping (Optional)
-
-
 
 I used for this tutorial the following components:
 
 * [*Keyestudio smart home set:*](https://www.keyestudio.com/products/keyestudio-smart-home-kit-withlus-board-for-arduino-diy-stem) this set includes a laser-cut wooden house, with an Arduino clone with a sensor shield, Bluetooth board, sensors and actuators. This is available on Amazon but also at Ali-express etc. It is really good quality, with excellent instructions to build the house and to connect everything. The needed code is available online. For every sensor/actuator is code available, and of course also for the complete set-up. This set is sold via different vendors, so look for the best price for you.
 * Raspberry PI 1: This house is connected to a gateway, I used a Raspberry Pi 4 for that, but this can also be a Raspberry Pi 3. This Raspberry acts as a gateway between the devices and the MQTT server. This gateway is also connected to the cloud or local machine. OPTIONAL: you can also host the gateway on another device, like your local machine.
-* Raspberry Pi 2: This Raspberry Pi acts as an MQTT Broker. I use a Raspberry Pi 4 (can also be a Raspberry Pi 3) for that with a Sense HAT board. A Sense Hat is an additional board on top of a Raspberry Pi. It consists of a LED matrix and a joystick. This Sensehat is optional, I use it for displaying traffic going through the MQTT server on the LED Matrix. OPTIONAL: Instead of setting up an MQTT Broker yourself, you can also use a public broker for this or run a broker on another device.
-* Web camera, this can be any USB camera or a Raspberry Pi camera.
-* OPTIONAL: NodeMCU: there are different devices based on ESP8266, It is open source and relatively cheap and easy to work with. I am using a LoLin board, which has WIFI on board, I have connected a sensor to it to control my 'smart garden'.
+* Raspberry Pi 2: This Raspberry Pi acts as an MQTT Broker. I use a Raspberry Pi 3 for that with a Sense HAT board. A Sense Hat is an additional board on top of a Raspberry Pi. It consists of a LED matrix and a joystick. This Sensehat is optional, I use it for displaying traffic going through the MQTT server on the LED Matrix. OPTIONAL: Instead of setting up an MQTT Broker yourself, you can also use a public broker for this or run a broker on another device.
+NodeMCU: there are different devices based on ESP8266, It is open source and relatively cheap and easy to work with. I am using a LoLin board, which has WIFI on board, I have connected a sensor to it to control my 'smart garden'.
 
-For this tutorial, I used different pieces of hardware. To use all the possibilities I am going to mention in this tutorial, I advise you to have all parts available. You can also build the functionalities in this tutorial with only having an Arduino with one sensor. All the parts running on the 2 Raspberry Pi's can also run on your laptop or on IBM Cloud.
+For this tutorial, I used different pieces of hardware. To use all the possibilities I am going to mention in this tutorial, I advise you to have all parts available. You can also build the functionalities in this tutorial with only having an Arduino with one sensor. All the parts running on the 2 Raspberry Pi's can also run on your laptop.
 
 
 ## Step 2 Clone the repo
@@ -93,7 +91,7 @@ First let's get the code. From the terminal of the system, you plan on running N
 - Clone the this repo:
 
 ```
-$ git clone https://github.com/IBM/xxxxxxxxx
+$ git clone https://github.com/Hansb001/xxxxxxxxx
 ```
 
 Move into the directory of the cloned repo:
@@ -108,10 +106,7 @@ Note: For Raspberry Pi users, details on accessing the command line can be found
 
 You first get an introduction to all the parts of the complete set. Then you start with downloading the Arduino software, needed to program the microcontroller. The instructions are based on Windows, but instructions for Apple are similar.
 
-Then to check if you can connect with the Arduino, you use an example sketch to test connectivity. The next step is to install needed libraries for two of the components:
-
-* LED display.
-* Servos.
+Then to check if you can connect with the Arduino, you use an example sketch to test connectivity.
 
 After doing this, you are good to go!
 The tutorial then continues with a description of all the components and some sample code to test. There is also a good explanation of every piece of code available.
@@ -125,20 +120,14 @@ When this is done, it is time to upload the code to control all the components, 
 
 When the sketch is uploaded, you can test all the different components one by one to see if they are connected in the right way.
 
-FYI, I did not connect the servo from the window in the right way: it opens when the water sensor gets activated....
 
 ## Step 3a Change code to view data on dashboard 
-
-You can use the smart home as you configured it as above, but then no data will be sent to the gateway. To make that possible, I checked the code out and came up with a -fairly- simple solution.
-
-Arduino has the option to send things to a console, the fun thing is when you use that option, the info is also being sent to the USB port. On this USB-port, the gateway is connected so it receives the information from the Arduino.
 
 To start and stop the different sensors, different letters (a-r) are being used. Later on, when building the dashboard we are going to uses these letters as well to control the smart home from the dashboard.
 
 On the dashboard I use the data coming from the following sensors:
 * gas sensor.
-* rain sensor.
-* 
+* humidity sensor.
 * light sensor.
 
 Therefore I added a line of code for each sensor:
@@ -350,13 +339,8 @@ When you followed all the steps and used all the devices as described, you have 
 Node-RED information:
 * [Getting started with Node-RED](https://nodered.org/docs/getting-started/)
 
-
-
-
 ## License
 
 This tutorial is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this tutorial are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
 [Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
-
-
