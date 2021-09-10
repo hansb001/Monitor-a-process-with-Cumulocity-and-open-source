@@ -323,17 +323,10 @@ Data from the different sensors arrive via the different MQTT-in nodes. Via a mo
 
 Based on these values, actions like starting the fan are being taken automatically. Also, warnings and alarms will be set in Cumulocity. These warnings and alarms are also sent to Slack.
 
-Both flows can be found [here](/code/GatewayFlow)
+Both flows can be found [here](/code/GatewayFlow.json)
 
 
 <img src="images/GatewayFlow2.png"  width="100%" height="100%">
-
-
-
-
-
-
-
 
 ## Step 9 Build a Dashboard
 
@@ -351,7 +344,7 @@ This flow consists of two parts:
 * On the left side all the data comes in via the MQTT-nodes and is forwarded to the dashboard elements, these are all graphs. 
 * On the right side are all the elements to control the sensors and actuators. They consist of buttons to activate the sensors and switches to turn off and on the actuators.
 
-The flow can be found [here](/flows/LocalFlowlow)
+The flow can be found [here](/flows/LocalFlow.json)
 
 ## Final Thoughts
 
