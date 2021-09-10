@@ -22,8 +22,8 @@ When you have completed this tutorial, you will understand how to:
 
 ![ArchitectureDiagram](images/SWAGv1.jpg)
  
-The gateway is the heart of the system. This device receives all data from the other devices and sends this to Cumulocity, where it is displayed on a dashboard in real-time. The gateway also receives commands from Cumulocity to send it to the devices. The connection between the Gateway and Cumulocity is using the MQTT protocol form Cumulocity.
-Also a local MQTT server is available to connect some of the devices, like the local dashboard and NodeMCU to the gateway.
+The gateway is the heart of the system. This device receives all data from the other devices and sends this to Cumulocity, where it is displayed on a dashboard in real-time. The gateway also receives commands from Cumulocity to send it to the devices. The connection between the Gateway and Cumulocity is using the MQTT protocol from Cumulocity.
+Also, a local MQTT server is available to connect some of the devices, like the local dashboard and NodeMCU to the gateway.
 There are 2 devices with sensors:
 
 * NodeMCU, this device has only one sensor (humidity) and is connected to the gateway via MQTT as well. 
@@ -79,16 +79,16 @@ Follow these steps to set up and run this tutorial. The steps are described in d
 In this tutorial the following components are used:
 
 * Arduino (clone) with a sensor shield, Bluetooth board, light sensor, humidity sensor, gas sensor, relay and fan. 
-* Raspberry PI 1: This device is connected to a gateway, A Raspberry Pi 4 is usede for this, but this can also be a Raspberry Pi 3. This Raspberry acts as a gateway between the Cumulocity and the devices. This gateway is also connected to the local machine. OPTIONAL: you can also host the gateway on another device, like your local machine.
+* Raspberry PI 1: This device is connected to a gateway, A Raspberry Pi 4 is used for this, but this can also be a Raspberry Pi 3. This Raspberry acts as a gateway between the Cumulocity and the devices. This gateway is also connected to the local machine. OPTIONAL: you can also host the gateway on another device, like your local machine.
 * Raspberry Pi 2: This Raspberry Pi acts as an MQTT server. A Raspberry Pi 3 is used for that with a Sense HAT board. A Sense Hat is an additional board on top of a Raspberry Pi. It consists of a LED matrix. This Sensehat is optional, it is used for displaying traffic going through the MQTT server on the LED Matrix. OPTIONAL: Instead of setting up an MQTT Broker yourself, you can also use a public broker for this or run a broker on another device.
-NodeMCU: there are different devices based on ESP8266. It is open source and relatively cheap and easy to work with. In this case a LoLin board is used, which has WIFI on board, a sensor is connected to it to monitor air humidity.
+NodeMCU: there are different devices based on ESP8266. It is open-source and relatively cheap and easy to work with. In this case, a LoLin board is used, which has WIFI on board, a sensor is connected to it to monitor air humidity.
 
-For this tutorial, different pieces of hardware are used. To use all possibilities that are mentioned in this tutorial, it's adviseable to have all parts available. You can also build the functionalities in this tutorial with only having an Arduino with one sensor. All the parts running on the 2 Raspberry Pi's can also run on your laptop.
+For this tutorial, different pieces of hardware are used. To use all possibilities that are mentioned in this tutorial, it's advisable to have all parts available. You can also build the functionalities in this tutorial by only having an Arduino with one sensor. All the parts running on the 2 Raspberry Pi's can also run on your laptop.
 
 
 ## Step 2 Clone this repo
 
-First let's get the code. From the terminal of the system, you plan on running Node-RED from, do the following:
+First, let's get the code. From the terminal of the system, you plan on running Node-RED from, do the following:
 
 - Clone this repo:
 
@@ -134,7 +134,7 @@ Gas sensor (line 185): it sends the value of gas to the console and serial port 
 188      break;//exit loop
 ```
 
-The other sensors and actuators work in a similarly.
+The other sensors and actuators work similarly.
 
 ## Step 5 Set up  Node-MCU and humidity sensor.
 
@@ -171,7 +171,7 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 
 #### Install Node-RED on Local Machine (Mac)
 
-First, you need to install node.js and and npm. Download the latest package [here](https://nodejs.org/en/) this includes Node.js and npm. 
+First, you need to install node.js and npm. Download the latest package [here](https://nodejs.org/en/) this includes Node.js and npm. 
 
 Then you can install Node-RED with the following command (found in the Node-RED [documentation](https://nodered.org/docs/getting-started/local#installing-with-npm)):
 
@@ -212,7 +212,7 @@ On the local machine you need to install:
 node-red-dashboard
 ```
 
-When installation is complete, you will see the nodes apear in the list of nodes on the left.
+When the installation is complete, you will see the nodes appear in the list of nodes on the left.
 
 ## Step 7 Set up local MQTT Server
 
@@ -230,7 +230,7 @@ The broker should now be running. You can check this via the systemd service sta
 ```
 sudo systemctl status mosquitto
 ```
-The output should be similar as the following:
+The output should be similar to the following:
 ```
 pi@rpiMqttServer:~ $ sudo systemctl status mosquitto
 ● mosquitto.service - LSB: mosquitto MQTT v3.1 message broker
@@ -252,7 +252,7 @@ A topic is simply a string that looks like a file system path. It has the genera
 ```
 a/b/c/...
 ```
-The great thing about MQTT is that you can just make up topics which describe your needs. You don’t need to register them anywhere. In this test we use ```test/message```
+The great thing about MQTT is that you can just make up topics that describe your needs. You don’t need to register them anywhere. In this test we use ```test/message```
 In the existing terminal, subscribe to the test/message topic:
 
 ```mosquitto_sub -h localhost -t "test/message"```
@@ -262,7 +262,7 @@ This will send a message to the MQTT broker which is currently running on the sa
 
 Because your current terminal is listening to the topic, you will need to open another terminal. 
 
-Once open, publish message to the test/message topic like this:
+Once open, publish a message to the test/message topic like this:
 
 ``` mosquitto_pub -h localhost -t "test/message" -m "Hello, world" ```
 If you look back at the first terminal now you should see this:
@@ -309,7 +309,7 @@ The first step is to connect the gateway via MQTT to Cumulocity, do that as foll
 
 The following step is to register the device (gateway) in Cumulocity. This can easily be done with an inject node.
 When you send a string format with the right static template code and the client ID and type of device from the previous step.
-In this case it looks like this: ```100,PiGatewayDevice,c8y_PiGWdevice```
+In this case, it looks like this: ```100,PiGatewayDevice,c8y_PiGWdevice```
 Now this device is visible in the devices list in Cumulocity.
 
 The last step before sending the data is to create the graphs with measurements for the dashboard.
@@ -348,14 +348,14 @@ To get the data on the dashboard you need to create a flow:
 <img src="images/LocalFlow.png" width="50%" height="50%">
 
 This flow consists of two parts:
-* On the left side all the data comes in via the MQTT-nodes and forwarded to the dashboard elements, these are all graphs . 
+* On the left side all the data comes in via the MQTT-nodes and is forwarded to the dashboard elements, these are all graphs. 
 * On the right side are all the elements to control the sensors and actuators. They consist of buttons to activate the sensors and switches to turn off and on the actuators.
 
 The flow can be found [here](/flows/LocalFlowlow)
 
 ## Final Thoughts
 
-When you followed all the steps and used all the devices as described, you have built something taht automatically runs and act on the sensor data. You can now test all the functionalities and see if it works. If you have any improvements or additional functionalities or comments etc. please let me know.
+When you followed all the steps and used all the devices as described, you have built something that automatically runs and act on the sensor data. You can now test all the functionalities and see if it works. If you have any improvements or additional functionalities or comments etc. please let me know.
 
 ## Links
 
