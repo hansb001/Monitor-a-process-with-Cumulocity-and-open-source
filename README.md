@@ -5,14 +5,14 @@ This is a tutorial with instructions to build a process monitoring system using 
 To monitor and control processes (in factories), there are many solutions available in the market. They work fine in most cases, but there are some disadvantages with these smart devices/sensors. Some of these devices are not compatible or not open for integrations with other devices, so you need different systems or different dashboards to operate them and interpret the data coming from the sensors.
 
 Wouldn’t it be nice if you could build something yourself, combining the output of the devices and see this output and control the devices from one dashboard? And how about an easy-to-use platform to help you monitor the processes?
-[This blog, with more background]()and this tutorial on Github describe how to do that, using Cumulocity and open-source technologies and using relatively inexpensive devices and sensors.
+[This blog, with more background]() and this tutorial on Github, describes how to do that, using Cumulocity and open-source technologies and using relatively inexpensive devices and sensors.
 
 When you have completed this tutorial, you will understand how to:
 
 * Connect devices to Cumulocity
 * Connect sensors and actuators to an Arduino and read their values.
 * Set up a gateway on a Raspberry Pi.
-* Run a MQTT Server on a Raspberry Pi.
+* Run an MQTT Server on a Raspberry Pi.
 * Connect sensors to a NodeMCU device and read their values (Optional).
 * Build applications in Node-RED.
 * Use Bluetooth, WIFI and MQTT  to communicate between the devices.
@@ -35,9 +35,9 @@ All warnings and alarms are also being sent to Slack via a webhook, to inform pe
 
 ## Included Components
 
-* [Cumulocity](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/), Cumulocity IoT was built from the ground up to be open, rapid to deploy and distributed.
+* [Cumulocity](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/), Cumulocity IoT was built from the ground up to be open, rapid to deploy and distribute.
 * [Node-RED](https://nodered.org), open-source programming tool, where you easily can combine hardware devices, API's etc. to build applications.
-* [MQTT](https://mqtt.org), open-source protocol for sending messages.
+* [MQTT](https://mqtt.org), an open-source protocol for sending messages.
 * Bluetooth.
 * [Arduino](www.arduino.cc), open-source microprocessor.
 * [Raspberry Pi](http://raspberrypi.org), credit-card-sized minicomputer.
@@ -104,27 +104,27 @@ Note: For Raspberry Pi users, details on accessing the command line can be found
 
 ## Step 3 Set up Cumulocity
 
-In this step you set up Cumulocity so it receives data and shows it on the dashboard.
+In this step, you set up Cumulocity so it receives data and shows it on the dashboard.
 It's recommended to start from here: [Getting started with Cumulocity](https://cumulocity.com/guides/users-guide/getting-started/)
-To create a free account go to:[Software AG Cloud](https://cumulocity.com/guides/users-guide/getting-started/)
+To create a free account go to [Software AG Cloud](https://cumulocity.com/guides/users-guide/getting-started/)
 
-Next step is to add devices, taht can be done in different ways. You can add devices via device management, but als from the device itself, which I think is much easier. In Step 8 regeristring the gateway, from the device itself is explained.
-You can add extra functionlality to Cumulocity, like the possibility to send commands to the device. That can also be set-up from the device itself. That is alos explained in step 8.
+The next step is to add devices, that can be done in different ways. You can add devices via device management, but also from the device itself, which I think is much easier. In Step 8 registering the gateway, from the device itself is explained.
+You can add extra functionality to Cumulocity, like the possibility to send commands to the device. That can also be set up from the device itself. That is also explained in step 8.
 
 ## Step 4 Set-up Client 1
 
-In this step you upload some code to the Arduino which is used as Client 1. This code can be found [here]. This code exsists of functions to read and control the sensors and actuaros connected to this device. Each function is triggered by a letter. So by sending a letter to this device an action will be taken, like starting a fan. Sending another letter wil stop the fan.
+In this step, you upload some code to the Arduino which is used as Client 1. This code can be found [here]. This code exists of functions to read and control the sensors and actuators connected to this device. Each function is triggered by a letter. So by sending a letter to this device an action will be taken, like starting a fan. Sending another letter will stop the fan.
 
-Another function which is part of this application is to connect a mobile device via the Bluetooth Module.
+Another function that is part of this application is to connect a mobile device via the Bluetooth Module.
 
 On the dashboard in Cumulocity the data from the following sensors is being displayed:
 * gas sensor.
 * humidity sensor.
 * light sensor.
 
-Here you see an expample for the gas sensor:
+Here you see an example for the gas sensor:
 
-Gas sensor (line 185): it sends the the value of gas to the console and serial port when ``` i ``` is receiceved by the dashboard or the mobile device.
+Gas sensor (line 185): it sends the value of gas to the console and serial port when ``` i ``` is received by the dashboard or the mobile device.
 ```
 184 case 'i'://if val is character 'i'，program will circulate
 185      Serial.println((String)"Gas= "+gas);
@@ -133,9 +133,9 @@ Gas sensor (line 185): it sends the the value of gas to the console and serial p
 188      break;//exit loop
 ```
 
-The other sensors and actuators work in a similar way.
+The other sensors and actuators work in a similarly.
 
-## Step 5 Set-up  Node-MCU and humidity sensor.
+## Step 5 Set up  Node-MCU and humidity sensor.
 
 An extra device is added to monitor the air humidity as well. I used a NodeMCU device for that. I used a different device for 2 reasons: it is a relatively cheap device and to show how easy it is to connect different devices. This device is based on ESP8266 which is commonly used in cases like this.
 
@@ -270,18 +270,16 @@ If you look back at the first terminal now you should see this:
 
 if this works, your MQTT Broker is working!
 
-Optional:
-
-I added a [Sense HAT](https://www.raspberrypi.org/products/sense-hat/?resellerType=home) to the Raspberry Pi to make it visual when messages are being sent. A Sense HAT is an additional board on top of a Raspberry Pi. It consists of sensors, joystick and a LED matrix. Every time a message goes through the broker, an image is being displayed on the LED Matrix of the Sense HAT. 
+I added a [Sense HAT](https://www.raspberrypi.org/products/sense-hat/?resellerType=home) to the Raspberry Pi to make it visual when messages are being sent. A Sense HAT is an additional board on top of a Raspberry Pi. It consists of sensors, a joystick and a LED matrix. Every time a message goes through the broker, an image is being displayed on the LED Matrix of the Sense HAT. 
 
 For displaying, I created an application in Node-RED  for that:
 
 <img src="images/MQTTFlow.png"  width="60%" height="60%">
 
 The flow works as follows:
-1. If a sensor is being activated , data is being sent via the MQTT-broker running on this Raspberry Pi. This Node-RED flow is there to make it visual, the MQTT broker will work without this flow as well.
+1. If a sensor is being activated, data is being sent via the MQTT-broker running on this Raspberry Pi. This Node-RED flow is there to make it visual, the MQTT broker will work without this flow as well.
 2. Messages come in via one of the 2 MQTT-nodes: ```smart/factory/hum/message``` and/or ```smart/factory/message```. Both message-nodes receive data from the different sensors.
-3. When the data is received, a logo is being created.  This is done in the change node. From this change node the information is directly sent to the Sense HAT.
+3. When the data is received, a logo is being created.  This is done in the change node. From this change node, the information is directly sent to the Sense HAT.
 4. After 1 second the display is being cleared: after a delay of 1 second, a black screen is being sent.
 
 The flow can be found [here](/code/MQTTFlow.json)
@@ -289,9 +287,9 @@ The flow can be found [here](/code/MQTTFlow.json)
 
 ## Step 8 Set up the gateway
 
-In this step, you will create 2 flows. The first flow is needed to send and receive data (via MQTT) from the connected devices to the local dashboard, which runs locally . All the sensor data comes in via the MQTT-nodes or via the serial port. 
+In this step, you will create 2 flows. The first flow is needed to send and receive data (via MQTT) from the connected devices to the local dashboard, which runs locally. All the sensor data comes in via the MQTT-nodes or via the serial port. 
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
-There is also a connection with Slack, via a webhook alarms and warnings are being send to a slack channel
+There is also a connection with Slack, via a webhook, alarms and warnings are being sent to a Slack channel
 
 <img src="images/GatewayFlow1.png"  width="60%" height="50%">
 
@@ -301,15 +299,15 @@ The first step is to connect the gateway via MQTT to Cumulocity, do that as foll
 
 1. Drag an MQTT out node on the canvas
 2. Open this node and click the pencil behind ```add new mqtt-broker```
-3. On the Connection tab, fill in the server adress: ```mqtt.cumulocity.com``` and port ```1883``` and a client ID. Remember this client ID as this is being used to register your device and display a dashboard in Cumulocity.
+3. On the Connection tab, fill in the server address: ```mqtt.cumulocity.com``` and port ```1883``` and a client ID. Remember this client ID as this is being used to register your device and display a dashboard in Cumulocity.
 4. On the security tab, fill in ```tennantID/username``` and your password. 
 5. Then click on add
-6. last step is adding a topic, this should be ```s/us``` This topic is used for static templates. see [here](https://cumulocity.com/guides/device-sdk/mqtt/) a list of templates which you can use. Some of these are used in this tutorial as well.
+6. The last step is adding a topic, this should be ```s/us``` This topic is used for static templates. See [here](https://cumulocity.com/guides/device-sdk/mqtt/) a list of templates that you can use. Some of these are used in this tutorial as well.
 7. Now you are connected to Cumulocity via MQTT
 
 
-The following step is to register the device (gateway) in Cumulocity. This can easily been done with an inject node.
-When you send a string format with the right static template code and the client ID and type of device from previous step.
+The following step is to register the device (gateway) in Cumulocity. This can easily be done with an inject node.
+When you send a string format with the right static template code and the client ID and type of device from the previous step.
 In my case it looks like this: ```100,PiGatewayDevice,c8y_PiGWdevice```
 Now this device is visible in the devices list in Cumulocity.
 
@@ -318,11 +316,11 @@ Another static template is used for that as well in an inject node: ```200,GasIn
 As you can see this is for the gas intensity, with the measurements.
 For the other sensors use similar ways.
 
-Now everything is set up and the flow to send data from the sensors to Cumulocity can be build. 
+Now everything is set up and the flow to send data from the sensors to Cumulocity can be built. 
 
-Data from the different sensors arrive via the different MQTT-in nodes. Via a moustache template the values are being poured in a right format to handle in Cumulocity, as an example here the template for the gas sensor: ```200,GasIntensity,mg/m3,{{payload}},mg/m3``` where the ```payload``` is being replaced by the values.
+Data from the different sensors arrive via the different MQTT-in nodes. Via a moustache template the values are being poured in the right format to handle in Cumulocity, as an example here the template for the gas sensor: ```200,GasIntensity,mg/m3,{{payload}},mg/m3``` where the ```payload``` is being replaced by the values.
 
-Based on these values, actions like starting the fan are being taken automatically. Also warnings and alarms will be set in Cumulocity. These warning and alarms are also send to Slack.
+Based on these values, actions like starting the fan are being taken automatically. Also, warnings and alarms will be set in Cumulocity. These warnings and alarms are also sent to Slack.
 
 Both flows can be found [here](/code/GatewayFlow)
 
