@@ -293,8 +293,8 @@ In this step, you will create a simple flow. This flow is needed to send and rec
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
 There is also a connection with Slack. 
 
-<img src="images/GatewayFlow1.png"  width="60%" height="60%">
-<img src="images/GatewayFlow2.png"  width="60%" height="60%">
+<img src="images/GatewayFlow1.png"  width="60%" height="50%">
+<img src="images/GatewayFlow2.png"  width="60%" height="80%">
 
 
 
@@ -307,12 +307,13 @@ The flow can be found [here](/code/GatewayFlow)
 
 This dashboard receives data from the connected devices, especially from some sensors. 
 
-![Dashboard](images/LocalDashboard.png)
+<img src="images/LocalDashboard.png" width="50%" height="50%">
+
 
 To get the data on the dashboard you need to create a flow:
 
 
-<img src="images/LocalFlow.png" width="100%" height="100%">
+<img src="images/LocalFlow.png" width="50%" height="50%">
 
 This flow consists of two parts:
 * On the left side all the data comes in via the MQTT-nodes and forwarded to the dashboard elements, these are all graphs except for the picture. I used a mustache template for that, to show the picture on the dashboard.
