@@ -1,4 +1,4 @@
-# Monitor a process with Cumulocity and open source
+# Monitor a process with Cumulocity and open source technology
 
 This is a tutorial with instructions to build a process monitoring system using Cumulocity, Node-Red and other technologies
 
@@ -19,6 +19,7 @@ When you have completed this tutorial, you will understand how to:
 * Send messages to Slack.
 
 ## Architecture Diagram
+
 ![ArchitectureDiagram](images/SWAGv1.jpg)
  
 The gateway is the heart of the system. This device receives all data from the other devices and sends this to Cumulocity, where it is displayed on a dashboard in real-time. The gateway also receives commands from Cumulocity to send it to the devices. The connection between the Gateway and Cumulocity is using the MQTT protocol.
@@ -31,7 +32,6 @@ The mobile device is connected with Bluetooth to Client1 to interact with the pr
 Also, the local machine is connected to the system via MQTT. This local machine is running an extra dashboard to monitor and control the process when there is no internet connection.
 
 All warnings and alarms are also being sent to Slack via a webhook, to inform people involved, like process operators.
-
 
 ## Included Components
 
@@ -69,13 +69,13 @@ Follow these steps to set up and run this tutorial. The steps are described in d
 4. Set-up Client 1
 5. Set-up Node-MCU
 6. Setup Node-RED on both Raspberry Pi's and local machine
-7. Set up MQTT Broker
+7. Set up local MQTT Server
 8. Set up Gateway
 9. Build a dashboard
 
 ## Step 1 Do some shopping 
 
-I used for this tutorial the following components:
+In this tutorial the following components are used:
 
 * Arduino (clone) with a sensor shield, Bluetooth board, light sensor, humidity sensor, gas sensor, relay and fan. 
 * Raspberry PI 1: This device is connected to a gateway, I used a Raspberry Pi 4 for this, but this can also be a Raspberry Pi 3. This Raspberry acts as a gateway between the Cumulocity and the devices. This gateway is also connected to the local machine. OPTIONAL: you can also host the gateway on another device, like your local machine.
@@ -137,7 +137,6 @@ The other sensors and actuators work in a similar way.
 
 ## Step 5 Set-up  Node-MCU and humidity sensor.
 
-
 An extra device is added to monitor the air humidity as well. I used a NodeMCU device for that. I used a different device for 2 reasons: it is a relatively cheap device and to show how easy it is to connect different devices. This device is based on ESP8266 which is commonly used in cases like this.
 
 This device its data from the humidity sensor via MQTT to the gateway to display it on the dashboard in Cumulocity.  To upload and compile the code, I use the Arduino IDE.
@@ -152,7 +151,7 @@ It is a browser-based editor to connect all kinds of nodes together with wires. 
 
 I am using Node-RED on different devices to collect the data from the process to show it on the dashboard. Therefore I installed Node-RED on both Raspberry Pi's and on my local machine. If you are using an earlier version of Raspian (Rasberry Pi operating system) Node-RED might be installed already. I will now explain what you need to do before you can start with importing or building the flows in the next steps.
 
-In short, you need to do the following steps for both the Raspberry Pi and local machine:
+In short, you need to do the following steps for both Raspberry Pi's and the local machine:
 1. Install Node.js and nvm.
 2. Install Node-RED.
 3. Add security to Node-RED.
@@ -214,9 +213,7 @@ node-red-dashboard
 
 When installation is complete, you will see the nodes apear in the list of nodes on the left.
 
-
-
-## Step 7 Set up MQTT Broker
+## Step 7 Set up local MQTT Server
 
 MQTT is a lightweight and simple messaging protocol, therefore, you need a broker that receives and sends messages based on a certain topic. If you want to read more about MQTT, please go [here](https://mqtt.org).
 
@@ -278,15 +275,15 @@ Optional:
 I added a [Sense HAT](https://www.raspberrypi.org/products/sense-hat/?resellerType=home) to the Raspberry Pi to make it visual when messages are being sent. A Sense HAT is an additional board on top of a Raspberry Pi. It consists of sensors, joystick and a LED matrix. Every time a message goes through the broker, an image is being displayed on the LED Matrix of the Sense HAT. 
 
 For displaying, I created an application in Node-RED  for that:
-![MQTT Flow](images/SH_MQTT_Flow.png)
+![MQTT Flow](images/MQTTFlow.png)
 
 The flow works as follows:
-1. If a sensor is being activated or a picture is taken, data is being sent via the MQTT-broker running on this Raspberry Pi. This Node-RED flow is there to make it visual, the MQTT broker will work without this flow as well.
-2. Messages come in via one of the 2 MQTT-nodes smart/home/message,  smart/home/message/picture and smart/garden/messageBoth message-nodes receive data from the different sensors. The picture node receives data from the camera.
-3. Based on which MQTT-node the data is coming from, a logo is being created, both message nodes create a message icon. The other picture node creates a camera icon. This is done in the 2 change nodes. From these change nodes the information is directly sent to the Sense HAT.
+1. If a sensor is being activated , data is being sent via the MQTT-broker running on this Raspberry Pi. This Node-RED flow is there to make it visual, the MQTT broker will work without this flow as well.
+2. Messages come in via one of the 2 MQTT-nodes: ```smart/factory/hum/message``` and/or ```smart/factory/message```. Both message-nodes receive data from the different sensors.
+3. When the data is received, a logo is being created.  This is done in the change node. From this change node the information is directly sent to the Sense HAT.
 4. After 1 second the display is being cleared: after a delay of 1 second, a black screen is being sent.
 
-The flow can be found [here](/flows/MQTT_flow)
+The flow can be found [here](/flows/MQTTFlow)
 
 ## Step 8 Set up the gateway
 
