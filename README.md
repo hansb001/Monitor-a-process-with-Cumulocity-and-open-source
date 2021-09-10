@@ -19,7 +19,7 @@ When you have completed this tutorial, you will understand how to:
 * Send messages to Slack.
 
 ## ArchitectureDiagram
-![ArchitectureDiagram](images/SH_Architecture_DiagramV3.png)
+![ArchitectureDiagram](images/SWAGv1.jpg)
  
 The gateway is the heart of the system. This device receives all data from the other devices and sends this to Cumulocity, where it is displayed on a dashboard in real-time. The gateway also receives commands from Cumulocity to send it to the devices. The connection between the Gateway and Cumulocity is using the MQTT protocol.
 There are 2 devices with sensors:
