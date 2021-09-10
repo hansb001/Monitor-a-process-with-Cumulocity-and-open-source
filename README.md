@@ -275,7 +275,8 @@ Optional:
 I added a [Sense HAT](https://www.raspberrypi.org/products/sense-hat/?resellerType=home) to the Raspberry Pi to make it visual when messages are being sent. A Sense HAT is an additional board on top of a Raspberry Pi. It consists of sensors, joystick and a LED matrix. Every time a message goes through the broker, an image is being displayed on the LED Matrix of the Sense HAT. 
 
 For displaying, I created an application in Node-RED  for that:
-![MQTT Flow](images/MQTTFlow.png)
+
+<img src="images/MQTTFlow.png"  width="60%" height="60%">
 
 The flow works as follows:
 1. If a sensor is being activated , data is being sent via the MQTT-broker running on this Raspberry Pi. This Node-RED flow is there to make it visual, the MQTT broker will work without this flow as well.
@@ -285,12 +286,15 @@ The flow works as follows:
 
 The flow can be found [here](/code/MQTTFlow.json)
 
+
 ## Step 8 Set up the gateway
 
 In this step, you will create a simple flow. This flow is needed to send and receive data (via MQTT) from the connected devices to a dashboard, which runs locally or in the cloud. All the sensor data comes in via the MQTT-nodes or via the serial port. 
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
 There is also a connection with Slack. 
-<img src="images/GatewayFlow1.png"  width="75%" height="75%">
+
+<img src="images/GatewayFlow1.png"  width="60%" height="60%">
+<img src="images/GatewayFlow2.png"  width="60%" height="60%">
 
 
 
