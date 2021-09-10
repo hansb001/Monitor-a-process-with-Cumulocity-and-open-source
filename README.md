@@ -102,41 +102,29 @@ $ cd xxxxxx
 ```
 Note: For Raspberry Pi users, details on accessing the command line can be found in the remote access documentation if not connecting with a screen and keyboard.
 
-## Step 4 Set up Cumulocity
+## Step 3 Set up Cumulocity
 
-## Step 4 Build your process monitoring system set up application
+In this step you set up Cumulocity so it receives data and shows it on the dashboard.
+It's recommended to start from here: [Getting started with Cumulocity](https://cumulocity.com/guides/users-guide/getting-started/)
+To create a free account go to:[Software AG Cloud](https://cumulocity.com/guides/users-guide/getting-started/)
 
-[Here](https://wiki.keyestudio.com/) you can find all instructions and [here](https://fs.keyestudio.com/KS0085) is the sample code to build the application on client 1. This tutorial and sample code are provided by Keyestudio.
+Next step is to add devices, taht can be done in different ways. You can add devices via device management, but als from the device itself, which I think is much easier. In Step 8 regeristring the gateway, from the device itself is explained.
+You can add extra functionlality to Cumulocity, like the possibility to send commands to the device. That can also be set-up from the device itself. That is alos explained in step 8.
 
-You first get an introduction to all the parts of the complete set. Then you start with downloading the Arduino software, needed to program the microcontroller. The instructions are based on Windows, but instructions for Apple are similar.
+## Step 4 Set-up Client 1
 
-Then to check if you can connect with the Arduino, you use an example sketch to test connectivity.
+In this step you upload some code to the Arduino which is used as Client 1. This code can be found [here]. This code exsists of functions to read and control the sensors and actuaros connected to this device. Each function is triggered by a letter. So by sending a letter to this device an action will be taken, like starting a fan. Sending another letter wil stop the fan.
 
-After doing this, you are good to go!
-The tutorial then continues with a description of all the components and some sample code to test. There is also a good explanation of every piece of code available.
+Another function which is part of this application is to connect a mobile device via the Bluetooth Module.
 
-The last step is to connect your IOS or Android device to the Bluetooth Module.
-You have to download an app, with this app you can control and start/stop some of the components. 
-
-you need to connect all the wires from the components to the expansion board, in the tutorial you will see a table to connect the components to the right ports.
-
-When this is done, it is time to upload the code to control all the components, which is available in the last step of the tutorial.
-
-When the sketch is uploaded, you can test all the different components one by one to see if they are connected in the right way.
-
-
-## Step 3a Change code to view data on dashboard 
-
-To start and stop the different sensors, different letters (a-r) are being used. Later on, when building the dashboard we are going to uses these letters as well to control the process from the dashboard.
-
-On the dashboard I use the data coming from the following sensors:
+On the dashboard in Cumulocity the data from the following sensors is being displayed:
 * gas sensor.
 * humidity sensor.
 * light sensor.
 
-Therefore I added a line of code for each sensor:
+Here you see an expample for the gas sensor:
 
-Gas sensor (line 185): it sends the the value of gas to the console and the USB port when ``` i ``` is receiceved by the dashboard or the mobile device.
+Gas sensor (line 185): it sends the the value of gas to the console and serial port when ``` i ``` is receiceved by the dashboard or the mobile device.
 ```
 184 case 'i'://if val is character 'i'，program will circulate
 185      Serial.println((String)"Gas= "+gas);
@@ -145,12 +133,19 @@ Gas sensor (line 185): it sends the the value of gas to the console and the USB 
 188      break;//exit loop
 ```
 
-In this way I added lines for the other sensors as well.
-
-The new code can be found [here](/code/ArduinoCodeSmartHome.ino)
+The other sensors and actuators work in a similar way.
 
 
-## Step 4 Set up Node-RED
+## Step 5 Set-up  Node-MCU and humidity sensor.
+
+
+An extra device is added to monitor the air humidity as well. I used a NodeMCU device for that. I used a different device for 2 reasons: it is a relatively cheap device and to show how easy it is to connect different devices. This device is based on ESP8266 which is commonly used in cases like this.
+
+This device its data from the humidity sensor via MQTT to the gateway to display it on the dashboard in Cumulocity.  To upload and compile the code, I use the Arduino IDE.
+
+The code is available [here](/code/NodeMCU).
+
+## Step 6 Set up Node-RED
 
 Node-RED is a programming tool for wiring together hardware devices, APIs and online services.
 
@@ -222,7 +217,7 @@ When installation is complete, you will see the nodes apear in the list of nodes
 
 
 
-## Step 5 Set up MQTT Broker
+## Step 7 Set up MQTT Broker
 
 MQTT is a lightweight and simple messaging protocol, therefore, you need a broker that receives and sends messages based on a certain topic. If you want to read more about MQTT, please go [here](https://mqtt.org).
 
@@ -294,7 +289,7 @@ The flow works as follows:
 
 The flow can be found [here](/flows/MQTT_flow)
 
-## Step 6 Set up Gateway
+## Step 8 Set up the gateway
 
 In this step, you will create a simple flow. This flow is needed to send and receive data (via MQTT) from the connected devices to a dashboard, which runs locally or in the cloud. All the sensor data comes in via the MQTT-nodes or via the serial port. 
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
@@ -308,7 +303,7 @@ There is also a connection with Slack.
 The flow can be found [here](/flows/Gateway_flow)
 
 
-## Step 7 Build a Dashboard
+## Step 9 Build a Dashboard
 
 This dashboard receives data from the connected devices, especially from some sensors. 
 
@@ -325,14 +320,7 @@ This flow consists of two parts:
 
 The flow can be found [here](/flows/Local_flow)
 
-## Step 8 Set-up  Node-MCU and moisture sensor.
 
-
-I added an extra device to monitor the air humidity as well. I used a NodeMCU device for that. I used a different device for 2 reasons: it is a relatively cheap device and to show how easy it is to connect different devices. This device is based on ESP8266 which is commonly used in cases like this.
-
-This device its data from the soil moisture sensor via MQTT to the gateway to display it on the dashboard. This data will be displayed on the dashboard as well To upload and compile the code, I use the Arduino IDE.
-
-The code is available [here](/code/NodeMCU).
 
 ## Final Thoughts
 
