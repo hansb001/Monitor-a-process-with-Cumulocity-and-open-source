@@ -290,9 +290,8 @@ The flow can be found [here](/code/MQTTFlow.json)
 In this step, you will create a simple flow. This flow is needed to send and receive data (via MQTT) from the connected devices to a dashboard, which runs locally or in the cloud. All the sensor data comes in via the MQTT-nodes or via the serial port. 
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
 There is also a connection with Slack. 
-<img src="images/GatewayFlow1.png"  width="250">
-![Gateway Flow](images/GatewayFlow1.png  width=250)
-![Gateway Flow](images/GatewayFlow2.png | width=100)
+<img src="images/GatewayFlow1.png"  width="75%" height="75%">
+
 
 
 
@@ -309,7 +308,7 @@ This dashboard receives data from the connected devices, especially from some se
 To get the data on the dashboard you need to create a flow:
 
 
-<img src="images/LocalFlow.png" width="100%" height="100%"/>
+<img src="images/LocalFlow.png" width="100%" height="100%">
 
 This flow consists of two parts:
 * On the left side all the data comes in via the MQTT-nodes and forwarded to the dashboard elements, these are all graphs except for the picture. I used a mustache template for that, to show the picture on the dashboard.
