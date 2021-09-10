@@ -18,7 +18,7 @@ When you have completed this tutorial, you will understand how to:
 * Use Bluetooth, WIFI and MQTT  to communicate between the devices.
 * Send messages to Slack.
 
-## ArchitectureDiagram
+## Architecture Diagram
 ![ArchitectureDiagram](images/SWAGv1.jpg)
  
 The gateway is the heart of the system. This device receives all data from the other devices and sends this to Cumulocity, where it is displayed on a dashboard in real-time. The gateway also receives commands from Cumulocity to send it to the devices. The connection between the Gateway and Cumulocity is using the MQTT protocol.
@@ -63,26 +63,24 @@ All warnings and alarms are also being sent to Slack via a webhook, to inform pe
 
 Follow these steps to set up and run this tutorial. The steps are described in detail below.
 
-1. Do some shopping (optional)
+1. Do some shopping
 2. Clone this repo
 3. Set-up Cumulocity
-4. Build your process monitoring system and set up application
+4. Set-up Client 1
 5. Set-up Node-MCU
 6. Setup Node-RED on both Raspberry Pi's and local machine
 7. Set up MQTT Broker
 8. Set up Gateway
 9. Build a dashboard
 
-## Step 1 Do some shopping (Optional)
+## Step 1 Do some shopping 
 
 I used for this tutorial the following components:
 
-* [*Keyestudio :*](https://www.keyestudio.com/) this set includes an Arduino clone with a sensor shield, Bluetooth board, sensors and actuators. This is available on Amazon but also at Ali-express etc. It is really good quality, with excellent instructions to connect everything. 
+* Arduino (clone) with a sensor shield, Bluetooth board, light sensor, humidity sensor, gas sensor, relay and fan. 
 * Raspberry PI 1: This device is connected to a gateway, I used a Raspberry Pi 4 for this, but this can also be a Raspberry Pi 3. This Raspberry acts as a gateway between the Cumulocity and the devices. This gateway is also connected to the local machine. OPTIONAL: you can also host the gateway on another device, like your local machine.
 * Raspberry Pi 2: This Raspberry Pi acts as an MQTT server. I use a Raspberry Pi 3 for that with a Sense HAT board. A Sense Hat is an additional board on top of a Raspberry Pi. It consists of a LED matrix. This Sensehat is optional, I use it for displaying traffic going through the MQTT server on the LED Matrix. OPTIONAL: Instead of setting up an MQTT Broker yourself, you can also use a public broker for this or run a broker on another device.
 NodeMCU: there are different devices based on ESP8266, It is open source and relatively cheap and easy to work with. I am using a LoLin board, which has WIFI on board, I have connected a sensor to it to monitor air humidity.
-* sensors: gas sensor, 2 humidity sensors and light sensor.
-* Actuators: Fan and relay
 
 For this tutorial, I used different pieces of hardware. To use all the possibilities I am going to mention in this tutorial, I advise you to have all parts available. You can also build the functionalities in this tutorial with only having an Arduino with one sensor. All the parts running on the 2 Raspberry Pi's can also run on your laptop.
 
@@ -136,7 +134,6 @@ Gas sensor (line 185): it sends the the value of gas to the console and serial p
 ```
 
 The other sensors and actuators work in a similar way.
-
 
 ## Step 5 Set-up  Node-MCU and humidity sensor.
 
@@ -297,30 +294,31 @@ In this step, you will create a simple flow. This flow is needed to send and rec
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
 There is also a connection with Slack. 
 
-![Gateway Flow](images/SH_Gateway_Flow.png)
+![Gateway Flow](images/GatewayFlow1.png)
+![Gateway Flow](images/GatewayFlow2.png)
 
 
 
 
-The flow can be found [here](/flows/Gateway_flow)
+The flow can be found [here](/code/GatewayFlow)
 
 
 ## Step 9 Build a Dashboard
 
 This dashboard receives data from the connected devices, especially from some sensors. 
 
-![Dashboard](images/SH_Dashboard.png)
+![Dashboard](images/LocalDashboard.png)
 
 To get the data on the dashboard you need to create a flow:
 
 
-<img src="images/SH_Local_Flow.png" width="100%" height="100%"/>
+<img src="images/LocalFlow.png" width="100%" height="100%"/>
 
 This flow consists of two parts:
 * On the left side all the data comes in via the MQTT-nodes and forwarded to the dashboard elements, these are all graphs except for the picture. I used a mustache template for that, to show the picture on the dashboard.
 * On the right side are all the elements to control the sensors and actuators. They consist of buttons to activate the sensors and switches to turn off and on the actuators.
 
-The flow can be found [here](/flows/Local_flow)
+The flow can be found [here](/flows/LocalFlowlow)
 
 
 
