@@ -64,7 +64,7 @@ All warnings and alarms are also being sent to Slack via a webhook, to inform pe
 Follow these steps to set up and run this tutorial. The steps are described in detail below.
 
 1. Do some shopping (optional)
-2. Clone the repo
+2. Clone this repo
 3. Set-up Cumulocity
 4. Build your process monitoring system and set up application
 5. Set-up Node-MCU
@@ -87,19 +87,20 @@ NodeMCU: there are different devices based on ESP8266, It is open source and rel
 For this tutorial, I used different pieces of hardware. To use all the possibilities I am going to mention in this tutorial, I advise you to have all parts available. You can also build the functionalities in this tutorial with only having an Arduino with one sensor. All the parts running on the 2 Raspberry Pi's can also run on your laptop.
 
 
-## Step 2 Clone the repo
+## Step 2 Clone this repo
 
 First let's get the code. From the terminal of the system, you plan on running Node-RED from, do the following:
 
-- Clone the this repo:
+- Clone this repo:
 
 ```
-$ git clone https://github.com/Hansb001/xxxxxxxxx
+$ git clone https://github.com/Hansb001/Monitor-a-process-with-Cumulocity-and-open-source
+
 ```
 
 Move into the directory of the cloned repo:
 ```
-$ cd xxxxxx
+$ cd Monitor-a-process-with-Cumulocity-and-open-source
 ```
 Note: For Raspberry Pi users, details on accessing the command line can be found in the remote access documentation if not connecting with a screen and keyboard.
 
