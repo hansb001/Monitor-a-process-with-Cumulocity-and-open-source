@@ -363,19 +363,19 @@ When you followed all the steps and used all the devices as described, you have 
 
 Start here, here you’ll find general info about Cumulocity and information on how to start
 
-* [Getting Started - Cumulocity IoT Guides]
+* [Getting Started - Cumulocity IoT Guides](https://www.cumulocity.com/guides/users-guide/getting-started/)
  
 You can create a free trial account here:
 
-* [Sign up - Software AG Cloud]
+* [Sign up - Software AG Cloud](https://signup.softwareag.cloud/#/)
 
 Some general information on Cumulocity:
 
-* [Cumulocity IoT (softwareag.com)]
+* [Cumulocity IoT (softwareag.com)](https://techcommunity.softwareag.com/en_en/cumulocity-iot.html)
  
-* ]Device Catalog - Device Partner Portal - Cumulocity IoT Connect - Software AG]
+* [Device Catalog - Device Partner Portal - Cumulocity IoT Connect - Software AG](https://devicepartnerportal.softwareag.com/devices)
  
-* [IoT and Integration (softwareag.cloud)]
+* [IoT and Integration (softwareag.cloud)](https://www.softwareag.cloud/site/reference-architecture/software-ag-reference-architecture.html#!architecture1)
 
 
 Node-RED information:
