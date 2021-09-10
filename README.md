@@ -294,7 +294,7 @@ The messages are being split into the right format to make it possible to show o
 There is also a connection with Slack. 
 
 <img src="images/GatewayFlow1.png"  width="60%" height="50%">
-<img src="images/GatewayFlow2.png"  width="60%" height="80%">
+<img src="images/GatewayFlow2.png"  width="100%" height="100%">
 
 
 
@@ -307,7 +307,7 @@ The flow can be found [here](/code/GatewayFlow)
 
 This dashboard receives data from the connected devices, especially from some sensors. 
 
-<img src="images/LocalDashboard.png" width="50%" height="50%">
+<img src="images/LocalDashboard.png" width="60%" height="60%">
 
 
 To get the data on the dashboard you need to create a flow:
@@ -320,8 +320,6 @@ This flow consists of two parts:
 * On the right side are all the elements to control the sensors and actuators. They consist of buttons to activate the sensors and switches to turn off and on the actuators.
 
 The flow can be found [here](/flows/LocalFlowlow)
-
-
 
 ## Final Thoughts
 
