@@ -1,10 +1,11 @@
-# Monitor-a-process-with-Cumulocity-and-open-source
+# Monitor a process with Cumulocity and open source
+
 This is a tutorial with instructions to build a process monitoring system using Cumulocity, Node-Red and other technologies
 
 To monitor and control processes (in factories), there are many solutions available in the market. They work fine in most cases, but there are some disadvantages with these smart devices/sensors. Some of these devices are not compatible or not open for integrations with other devices, so you need different systems or different dashboards to operate them and interpret the data coming from the sensors.
 
 Wouldn’t it be nice if you could build something yourself, combining the output of the devices and see this output and control the devices from one dashboard? And how about an easy-to-use platform to help you monitor the processes?
-This blog and the tutorial on Github describe how to do that, using Cumulocity and open-source technologies and using relatively inexpensive devices and sensors.
+[This blog, with more background]()and this tutorial on Github describe how to do that, using Cumulocity and open-source technologies and using relatively inexpensive devices and sensors.
 
 When you have completed this tutorial, you will understand how to:
 
