@@ -291,8 +291,8 @@ In this step, you will create a simple flow. This flow is needed to send and rec
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
 There is also a connection with Slack. 
 
-![Gateway Flow](images/GatewayFlow1.png)
-![Gateway Flow](images/GatewayFlow2.png)
+![Gateway Flow](images/GatewayFlow1.png | width=250)
+![Gateway Flow](images/GatewayFlow2.png | width=100)
 
 
 
