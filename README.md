@@ -302,7 +302,7 @@ The first step is to connect the gateway via MQTT to Cumulocity, do that as foll
 1. Drag an MQTT out node on the canvas
 2. Open this node and click the pencil behind ```add new mqtt-broker```
 3. On the Connection tab, fill in the server adress: ```mqtt.cumulocity.com``` and port ```1883``` and a client ID. Remember this client ID as this is being used to register your device and display a dashboard in Cumulocity.
-4. On the security tab, fill in ```tennantID/username`` and your password. 
+4. On the security tab, fill in ```tennantID/username``` and your password. 
 5. Then click on add
 6. last step is adding a topic, this should be ```s/us``` This topic is used for static templates. see [here](https://cumulocity.com/guides/device-sdk/mqtt/) a list of templates which you can use. Some of these are used in this tutorial as well.
 7. Now you are connected to Cumulocity via MQTT
@@ -320,9 +320,11 @@ For the other sensors use similar ways.
 
 Now everything is set up and the flow to send data from the sensors to Cumulocity can be build. 
 
-Data from the different sensors arrive via the different MQTT-in nodes. Via a moustache template the values are bing poured in a right format to handle in Cumulocity, as an exmalpe here the template for the gas sensor: ```200,GasIntensity,mg/m3,{{payload}},mg/m3``` where the ```payload``` is being replaced by the values.
+Data from the different sensors arrive via the different MQTT-in nodes. Via a moustache template the values are being poured in a right format to handle in Cumulocity, as an example here the template for the gas sensor: ```200,GasIntensity,mg/m3,{{payload}},mg/m3``` where the ```payload``` is being replaced by the values.
 
-Based on these values, actions are being taken
+Based on these values, actions like starting the fan are being taken automatically. Also warnings and alarms will be set in Cumulocity. These warning and alarms are also send to Slack.
+
+Both flows can be found [here](/code/GatewayFlow)
 
 
 <img src="images/GatewayFlow2.png"  width="100%" height="100%">
@@ -331,7 +333,7 @@ Based on these values, actions are being taken
 
 
 
-The flow can be found [here](/code/GatewayFlow)
+
 
 
 ## Step 9 Build a Dashboard
