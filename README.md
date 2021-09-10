@@ -289,11 +289,42 @@ The flow can be found [here](/code/MQTTFlow.json)
 
 ## Step 8 Set up the gateway
 
-In this step, you will create a simple flow. This flow is needed to send and receive data (via MQTT) from the connected devices to a dashboard, which runs locally or in the cloud. All the sensor data comes in via the MQTT-nodes or via the serial port. 
+In this step, you will create 2 flows. The first flow is needed to send and receive data (via MQTT) from the connected devices to the local dashboard, which runs locally . All the sensor data comes in via the MQTT-nodes or via the serial port. 
 The messages are being split into the right format to make it possible to show on the dashboard. Then they are being sent via MQTT to the dashboard. 
-There is also a connection with Slack. 
+There is also a connection with Slack, via a webhook alarms and warnings are being send to a slack channel
 
 <img src="images/GatewayFlow1.png"  width="60%" height="50%">
+
+The second flow is a little bit more complex. The purpose of this flow is to send and receive messages from Cumulocity. 
+
+The first step is to connect the gateway via MQTT to Cumulocity, do that as follows:
+
+1. Drag an MQTT out node on the canvas
+2. Open this node and click the pencil behind ```add new mqtt-broker```
+3. On the Connection tab, fill in the server adress: ```mqtt.cumulocity.com``` and port ```1883``` and a client ID. Remember this client ID as this is being used to register your device and display a dashboard in Cumulocity.
+4. On the security tab, fill in ```tennantID/username`` and your password. 
+5. Then click on add
+6. last step is adding a topic, this should be ```s/us``` This topic is used for static templates. see [here](https://cumulocity.com/guides/device-sdk/mqtt/) a list of templates which you can use. Some of these are used in this tutorial as well.
+7. Now you are connected to Cumulocity via MQTT
+
+
+The following step is to register the device (gateway) in Cumulocity. This can easily been done with an inject node.
+When you send a string format with the right static template code and the client ID and type of device from previous step.
+In my case it looks like this: ```100,PiGatewayDevice,c8y_PiGWdevice```
+Now this device is visible in the devices list in Cumulocity.
+
+The last step before sending the data is to create the graphs with measurements for the dashboard.
+Another static template is used for that as well in an inject node: ```200,GasIntensity,mg/m3,1000,mg/m3```
+As you can see this is for the gas intensity, with the measurements.
+For the other sensors use similar ways.
+
+Now everything is set up and the flow to send data from the sensors to Cumulocity can be build. 
+
+Data from the different sensors arrive via the different MQTT-in nodes. Via a moustache template the values are bing poured in a right format to handle in Cumulocity, as an exmalpe here the template for the gas sensor: ```200,GasIntensity,mg/m3,{{payload}},mg/m3``` where the ```payload``` is being replaced by the values.
+
+Based on these values, actions are being taken
+
+
 <img src="images/GatewayFlow2.png"  width="100%" height="100%">
 
 
