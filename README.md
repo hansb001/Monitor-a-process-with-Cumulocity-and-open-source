@@ -107,14 +107,14 @@ Note: For Raspberry Pi users, details on accessing the command line can be found
 
 In this step, you set up Cumulocity so it receives data and shows it on the dashboard.
 It's recommended to start from here: [Getting started with Cumulocity](https://cumulocity.com/guides/users-guide/getting-started/)
-To create a free account go to [Software AG Cloud](https://cumulocity.com/guides/users-guide/getting-started/)
+To create a free account go to [Software AG Cloud](https://signup.softwareag.cloud/#/)
 
 The next step is to add devices, that can be done in different ways. You can add devices via device management, but also from the device itself, which is much easier. In Step 8 registering the gateway, from the device itself is explained.
 You can add extra functionality to Cumulocity, like the possibility to send commands to the device. That can also be set up from the device itself. That is also explained in step 8.
 
 ## Step 4 Set-up Client 1
 
-In this step, you upload some code to the Arduino which is used as Client 1. This code can be found [here]. This code exists of functions to read and control the sensors and actuators connected to this device. Each function is triggered by a letter. So by sending a letter to this device an action will be taken, like starting a fan. Sending another letter will stop the fan.
+In this step, you upload some code to the Arduino which is used as Client 1. This code can be found [here](/code/SWAG_ARD.ino). This code exists of functions to read and control the sensors and actuators connected to this device. Each function is triggered by a letter. So by sending a letter to this device an action will be taken, like starting a fan. Sending another letter will stop the fan.
 
 Another function that is part of this application is to connect a mobile device via the Bluetooth Module.
 
@@ -142,7 +142,7 @@ An extra device is added to monitor the air humidity as well. A NodeMCU device i
 
 This device its data from the humidity sensor via MQTT to the gateway to display it on the dashboard in Cumulocity.  To upload and compile the code, the Arduino IDE can be used for that.
 
-The code is available [here](/code/NodeMCU).
+The code is available [here](/code/smartfactory_hum_sensor.ino).
 
 ## Step 6 Set up Node-RED
 
