@@ -283,7 +283,7 @@ The flow works as follows:
 3. When the data is received, a logo is being created.  This is done in the change node. From this change node the information is directly sent to the Sense HAT.
 4. After 1 second the display is being cleared: after a delay of 1 second, a black screen is being sent.
 
-The flow can be found [here](/code/MQTTFlow)
+The flow can be found [here](/code/MQTTFlow.json)
 
 ## Step 8 Set up the gateway
 
