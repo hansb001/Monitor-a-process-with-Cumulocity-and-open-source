@@ -5,10 +5,10 @@ int DRY= 2;  // Dry Indicator at Digital PIN D4
 int sense_Pin= 0; // Soil Sensor input at Analog PIN A0
 int value= 0;
 // Change the credentials below, so your ESP8266 connects to your router
-const char* ssid = "TopWifi";
-const char* password = "Rexisleuk2020!";
+const char* ssid = "xxxx";
+const char* password = "xxxx";
 // Change the variable to your Gateway (Raspberry Pi) IP address, so it connects to your MQTT broker
-const char* mqtt_server = "192.168.68.111";
+const char* mqtt_server = "xxxx";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
