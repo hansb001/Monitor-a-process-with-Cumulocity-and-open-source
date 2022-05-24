@@ -378,3 +378,336 @@ Node-RED information:
 This tutorial is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this tutorial are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
 [Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
+
+
+
+
+
+October
+
+|
+
+Name of event
+
+ |
+
+Url
+
+ |
+
+Date
+
+ |
+
+Country
+
+ |
+
+City
+
+ |
+
+Comments
+
+ |  |
+|
+
+Global Dev Slam
+
+ |
+
+<https://globaldevslam.com/>
+
+ |
+
+October 10-14 2022
+
+ |
+
+UAE
+
+ |
+
+Dubai
+
+ |
+
+CFP Open until?
+
+ |  |
+|
+
+Devoxx Belgium
+
+ |
+
+<https://devoxx.be>
+
+ |
+
+October 10-14 2022
+
+ |
+
+Belgium
+
+ |
+
+Antwerp
+
+ |
+
+june
+
+ |  |
+|
+
+Devoxx Morocco
+
+ |
+
+<https://devoxx.ma/>
+
+ |
+
+October 3-5 2022
+
+ |
+
+Morocco
+
+ |
+
+Agadir
+
+ |
+
+Not open yet
+
+ |  |
+|
+
+IEEE Sensors 2022
+
+ |
+
+<https://2022.ieee-sensorsconference.org/>
+
+ |
+
+October 30- November 2 2022
+
+ |
+
+Texas
+
+ |
+
+Dallas
+
+ |
+
+31/3- 18/6
+
+ |  |
+|
+
+Sensors 2022
+
+ |
+
+<https://www.setcor.org/conferences/sensors-2022>
+
+ |
+
+October 26-28
+
+ |
+
+Greece
+
+ |
+
+Athens
+
+ |
+
+April 29
+
+ |  |
+|
+
+ACM Internet Measurement Conference
+
+ |
+
+<https://conferences.sigcomm.org/imc/2022/>
+
+ |
+
+October 25-27
+
+ |
+
+France
+
+ |
+
+Nice
+
+ |
+
+May 18 2022
+
+ |  |
+|
+
+Hardware Pioneers Max
+
+ |
+
+<https://www.hardwarepioneers.com/>
+
+ |
+
+October 25
+
+ |
+
+UK
+
+ |
+
+London
+
+ |
+
+Open until?
+
+ |  |
+|
+
+IEEE 8^th^ World Forum on Internet of Things
+
+ |
+
+<https://wfiot2022.iot.ieee.org/>
+
+ |
+
+October 26--November 11 2022
+
+ |
+
+Japan
+
+ |
+
+Yokohama,
+
+ |
+
+11/4- 13/6
+
+ |  |
+|
+
+Internet of Things -- vom Sensor bis zur Cloud
+
+ |
+
+<https://events.weka-fachmedien.de/internet-of-things/home/>
+
+ |
+
+October 11 2022
+
+ |
+
+Germany
+
+ |
+
+Munich
+
+ |
+
+May 20
+
+ |  |
+|
+
+IoT Tech Expo NA
+
+ |
+
+<https://www.iottechexpo.com/northamerica/>
+
+ |
+
+October 5-6 2022
+
+ |
+
+California
+
+ |
+
+Santa Clara
+
+ |
+
+sponsoring
+
+ |  |
+|
+
+Embedded wireless systems and networks
+
+ |
+
+<https://ewsn>2022.jku.at/
+
+ |
+
+October 3-5 2022
+
+ |
+
+Austria
+
+ |
+
+Linz
+
+ |
+
+May 15 2022
+
+ |  |
+|
+
+All things open
+
+ |
+
+https://2021.allthingsopen.org/save-the-date-2022/
+
+ |
+
+October 30, November 2 2022
+
+ |
+
+North Carolina
+
+ |
+
+Raleigh
+
+ |
+
+Not yet announced
+
+ |  |
+|  |  |  |  |  |  |  |
